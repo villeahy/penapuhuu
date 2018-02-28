@@ -7,10 +7,10 @@ require('./db');
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname,'client/build')));
+app.use(express.static(path.resolve(__dirname,'asd')));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extemded: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cors());
 
