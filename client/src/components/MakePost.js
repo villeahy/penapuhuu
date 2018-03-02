@@ -27,6 +27,7 @@ export default class MakePost extends React.Component {
   handlePost(){
     if(this.state.username===''){
       console.log('ei')
+      this.setState({text:''})
     }else if(this.state.text===''){
       console.log('ei 2')
     }else if(this.state.password===''){
@@ -45,11 +46,11 @@ export default class MakePost extends React.Component {
     return (
       <div className='MakePost'>
       <p>Username:</p>
-      <input onChange={this.handleUser}></input> <br />
+      <input value={this.state.username} onChange={this.handleUser}></input> <br />
       <p>Post:</p>
-      <textarea onChange={this.handleText} rows='4' cols='55'></textarea> <br />
+      <textarea value={this.state.text} onChange={this.handleText} rows='4' cols='55'></textarea> <br />
       <p>Password:</p>
-      <input onChange={this.handlePass} type='password'></input>
+      <input value={this.state.password} onChange={this.handlePass} type='password'></input>
       <button onClick={this.handlePost}>Post</button>
       </div>
     );
