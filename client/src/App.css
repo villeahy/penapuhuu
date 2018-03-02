@@ -1,28 +1,25 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.MakePost {
+  margin: 0px auto;
+  width: 508px;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.MakePost p {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 100px;
+  vertical-align:top;
 }
-
-.App-title {
-  font-size: 1.5em;
+.MakePost input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 402px;
+  padding: 1px;
 }
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.MakePost button {
+  padding: 5px;
+  width: 100px;
 }

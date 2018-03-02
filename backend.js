@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cors());
-app.use('/api/users', user);
+app.use('/api/post', user);
 const port = process.env.PORT || 3420;
 
 app.listen(port, () => console.log('server started on port '+port));
