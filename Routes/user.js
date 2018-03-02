@@ -3,7 +3,19 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Post = require('../models/Post');
 
+const Pusher = require('pusher');
 
+const pusher = new Pusher({
+  appId: '485320',
+  key: 'a0baf500d9f8ab951ca1',
+  secret: '64d9f476a687c5fd35c2',
+  cluster: 'eu',
+  encrypted: true
+});
+
+pusher.trigger('my-channel', 'my-event', {
+  "message": "hello world"
+});
 
 router.get('/', (req, res) => {
   Post.find().then(results =>res.json({success: true, Posts:results}))
