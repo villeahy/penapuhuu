@@ -7,7 +7,7 @@ require('./db');
 
 const app = express();
 
-const user = require('./Routes/user');
+const post = require('./Routes/post');
 
 app.use(express.static(path.resolve(__dirname,'public')));
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cors());
-app.use('/api/post', user);
+app.use('/api/posts', post);
 const port = process.env.PORT || 3420;
 
 app.listen(port, () => console.log('server started on port '+port));

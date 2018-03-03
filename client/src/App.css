@@ -23,3 +23,13 @@
   padding: 5px;
   width: 100px;
 }
+.Post {
+  width: 508px;
+  margin: 0 auto;
+}
+.Post h4 {
+  margin-bottom: 5px;
+}
+.Post p {
+  margin: 5px auto;
+}

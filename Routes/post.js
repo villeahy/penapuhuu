@@ -12,17 +12,20 @@ const pusher = new Pusher({
   cluster: 'eu',
   encrypted: true
 });
+function postMap(posts){
+  return posts.map(post=>({username: post.username, text: post.text, date:post.date}));
+}
 
 pusher.trigger('my-channel', 'my-event', {
   "message": "hello world"
 });
 
 router.get('/', (req, res) => {
-  Post.find().then(results =>res.json({success: true, Posts:results}))
+  Post.find().then(results => res.send({success:true, posts:postMap(results)}))
 });
 
 router.get('/:id', function(req, res) {
-  Post.find({'_id': req.params.id}).then(results =>res.send({success: true, Post:results}))
+  Post.find({'_id': req.params.id}).then(results =>res.send({success: true, posts:postMap(results)}))
 });
 
 router.post('/', (req, res) =>{
