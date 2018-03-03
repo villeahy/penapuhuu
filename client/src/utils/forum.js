@@ -1,7 +1,7 @@
 
 const forum = {
   makePost(post){
-    fetch('http://localhost:3420/api/post',{
+    fetch('http://localhost:3420/api/posts',{
       method: 'POST',
       body: JSON.stringify(post),
       headers: new Headers({

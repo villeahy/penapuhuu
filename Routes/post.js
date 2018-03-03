@@ -29,6 +29,7 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/', (req, res) =>{
+  console.log(req.body)
   const newPost = {
     text: req.body.text,
     password: req.body.password,
@@ -37,7 +38,7 @@ router.post('/', (req, res) =>{
   }
   console.log(newPost)
   new Post(newPost).save();
-return res.json({success: true, message: 'Thank you for adding.'})
+res.json({success: true, message: 'Thank you for adding.'})
 })
 
  module.exports = router;

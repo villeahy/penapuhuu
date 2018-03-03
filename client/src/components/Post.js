@@ -23,7 +23,7 @@ export default class Post extends React.Component {
   render(){
     return(
       <div className='Post'>
-      <h4>{this.props.post.username}</h4>
+      <h4>User {this.props.post.username}</h4>
       <p>{this.props.post.text}</p>
       <p>Posted: {this.renderDay()}</p>
       </div>
