@@ -29,15 +29,19 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/', (req, res) =>{
-  console.log(req.body)
   const newPost = {
     text: req.body.text,
     password: req.body.password,
     username: req.body.username,
     date: req.body.date
   }
-  console.log(newPost)
-  new Post(newPost).save();
+  new Post(newPost).save().then(post =>{
+    pusher.trigger('forum', 'forum', {
+      'success': true,
+      'message': 'Post added',
+      'post': JSON.stringify({username: post.username, text:post.text, date:post.date})
+    });
+  });
 res.json({success: true, message: 'Thank you for adding.'})
 })
 

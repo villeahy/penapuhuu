@@ -7,7 +7,7 @@ const pusher = new Pusher('a0baf500d9f8ab951ca1', {
 
 const callback = {
   setPusher(channelEvent, callback){
-    const channel = pusher.subscribe('weather');
+    const channel = pusher.subscribe('forum');
     channel.bind(channelEvent, data => {
       callback(data)
     });
