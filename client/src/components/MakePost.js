@@ -48,9 +48,9 @@ export default class MakePost extends React.Component {
       <p>Username:</p>
       <input value={this.state.username} onChange={this.handleUser}></input> <br />
       <p>Post:</p>
-      <textarea value={this.state.text} onChange={this.handleText} rows='4' cols='55'></textarea> <br />
+      <textarea value={this.state.text} onChange={this.handleText}></textarea> <br />
       <p>Password:</p>
-      <input value={this.state.password} onChange={this.handlePass} type='password'></input>
+      <input value={this.state.password} onChange={this.handlePass} type='password'></input><br />
       <button onClick={this.handlePost}>Post</button>
       </div>
     );

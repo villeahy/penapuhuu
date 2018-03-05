@@ -3,7 +3,7 @@
 }
 .MakePost {
   margin: 0px auto;
-  width: 508px;
+  width: 406px;
 }
 .MakePost p {
   text-align: right;
@@ -16,12 +16,16 @@
 .MakePost input {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 402px;
+  width: 300px;
   padding: 1px;
 }
 .MakePost button {
   padding: 5px;
   width: 100px;
+}
+.MakePost textarea {
+  width: 300px;
+  height: 60px;
 }
 .PostList {
   max-height: 500px;
