@@ -19,6 +19,15 @@ const forum = {
     }catch(error){
         console.log(error);
     }
+  },
+  deletePost(password,id){
+    fetch('http://localhost:3420/api/posts/'+id,{
+      method: 'POST',
+      body: JSON.stringify({password:password}),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })})
+      .catch(err => console.log(err));
   }
 }
 export default forum;

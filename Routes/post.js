@@ -13,7 +13,7 @@ const pusher = new Pusher({
   encrypted: true
 });
 function postMap(posts){
-  return posts.map(post=>({username: post.username, text: post.text, date:post.date, id:post._id}));
+  return posts.map(post=>({username: post.username, text: post.text, date:post.date, id:post._id, hasRemove:typeof post.password==='string'}));
 }
 
 pusher.trigger('my-channel', 'my-event', {
@@ -27,9 +27,10 @@ router.get('/', (req, res) => {
 router.get('/:id', function(req, res) {
   Post.find({'_id': req.params.id}).then(results =>res.send({success: true, posts:postMap(results)}))
 });
-
-router.delete('/', function(req, res) {
-  Post.find({'password': req.body.password}).then(removed =>{
+//Delete
+router.post('/:id', function(req, res) {
+  console.log(req.body)
+  Post.find({'_id': req.params.id}).where({'password':req.body.password}).then(removed =>{
     res.send({success:true, message:'Post removed'})
     pusher.trigger('forum', 'delete', {
       'success': true,
@@ -37,7 +38,7 @@ router.delete('/', function(req, res) {
       'post': JSON.stringify(removed)
     });
   });
-  Post.remove({'password': req.body.password}, function (err) {
+  Post.remove({_id:req.params.id}, function (err) {
   if (err) return handleError(err);
 });
 })
@@ -53,7 +54,7 @@ router.post('/', (req, res) =>{
     pusher.trigger('forum', 'add', {
       'success': true,
       'message': 'Post added',
-      'post': JSON.stringify({username: post.username, text:post.text, date:post.date, id:post._id})
+      'post': JSON.stringify({username: post.username, text:post.text, date:post.date, id:post._id, hasRemove:typeof post.password==='string'})
     });
   });
 res.json({success: true, message: 'Thank you for adding.'})

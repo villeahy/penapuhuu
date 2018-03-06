@@ -37,6 +37,27 @@
 }
 .Post h4 {
   margin-bottom: 5px;
+  margin-right: 20px;
+  display: inline-block;
+  width: auto;
+}
+.Post input{
+  width: 150px;
+}
+.Delete {
+  display: inline-block;
+}
+.Post button{
+  color: red;
+  font-weight: bold;
+  border-radius: 100%;
+  background-color: #565656;
+  border-color: white;
+}
+.Post button:hover{
+  cursor: pointer;
+  background-color: black;
+  transition-duration: 2s;
 }
 .Post p {
   margin: 5px auto;
