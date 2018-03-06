@@ -27,9 +27,10 @@ router.get('/', (req, res) => {
 router.get('/:id', function(req, res) {
   Post.find({'_id': req.params.id}).then(results =>res.send({success: true, posts:postMap(results)}))
 });
+
 //Delete
 router.post('/:id', function(req, res) {
-  console.log(req.body)
+  console.log(req.body.password)
   Post.find({'_id': req.params.id}).where({'password':req.body.password}).then(removed =>{
     res.send({success:true, message:'Post removed'})
     pusher.trigger('forum', 'delete', {
@@ -38,9 +39,12 @@ router.post('/:id', function(req, res) {
       'post': JSON.stringify(removed)
     });
   });
-  Post.remove({_id:req.params.id}, function (err) {
+  Post.find({password:req.body.password}).remove({_id:req.params.id},function(err){
+    if(err) return handleError(err);
+  })
+  /*Post.remove({_id:req.params.id}, function (err) {
   if (err) return handleError(err);
-});
+});*/
 })
 
 router.post('/', (req, res) =>{
