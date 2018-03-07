@@ -9,7 +9,7 @@ require('./db');
 const app = express();
 
 const post = require('./Routes/post');
-const login = require('./Routes/login');
+const user = require('./Routes/user');
 
 app.use(express.static(path.resolve(__dirname,'public')));
 
@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cors());
-app.use('/login', login);
+app.use('/user', user);
 app.use('/api/posts', post);
 const port = process.env.PORT || 3420;
 

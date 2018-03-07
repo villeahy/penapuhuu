@@ -20,7 +20,4 @@ const postSchema = new Schema({
 });
 
 const post = mongoose.model('post', postSchema);
-const login = mongoose.model('login', postSchema);
-
 module.exports = post;
-module.expots = login;
