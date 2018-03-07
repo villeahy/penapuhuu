@@ -10,6 +10,12 @@ router.post('/login', function(req, res) {
   Post.find({'username' : req.body.username}).findOne({"password" : req.body.password}).then(user => handleLogin(req, res, user))
 })
 
+router.get('/pena', verifyToken, function(req, res) {
+  res.send({
+    pena: "pena"
+  })
+})
+
 function verifyToken (req, res, next) {
   const bearerHeader = req.headers['authorization'];
   if(typeof bearerHeader !== 'undefined') {
