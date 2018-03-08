@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import MakePost from './components/MakePost';
 import PostList from './components/PostList';
 import Post from './components/Post';
-
 import forum from './utils/forum';
 import pusher from './utils/pusher';
-
 import './App.css';
 
 class App extends Component {
@@ -17,8 +15,9 @@ class App extends Component {
     }
     this.newPost = this.newPost.bind(this);
     this.deletePost = this.deletePost.bind(this);
+    this.getPublic = this.getPublic.bind(this);
   }
-  componentWillMount(){
+  getPublic(){
     forum.getPosts().then(posts =>{
       const reverse =posts.reverse();
       this.setState({posts: reverse})
@@ -45,12 +44,12 @@ class App extends Component {
     return (
       <div className="App">
       <h1>Pena Puhuu</h1>
-      <PostList>
+      <PostList getPosts={this.getPublic}>
         <h3>Public</h3>
         {this.state.posts && this.state.posts.map((post, i) =><Post key={i} post={post} />)}
         <MakePost forum={forum} />
       </PostList>
-      <PostList>
+      <PostList isPrivate getPosts={this.getPublic}>
         <h3>Private</h3>
         {this.state.posts && this.state.posts.map((post, i) =><Post key={i} post={post} />)}
         <MakePost forum={forum} />
