@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import MakePost from './components/MakePost';
 import PostList from './components/PostList';
+import Post from './components/Post';
 
 import forum from './utils/forum';
 import pusher from './utils/pusher';
@@ -44,8 +45,16 @@ class App extends Component {
     return (
       <div className="App">
       <h1>Pena Puhuu</h1>
-      <PostList posts={this.state.posts} />
-      <MakePost />
+      <PostList>
+        <h3>Public</h3>
+        {this.state.posts && this.state.posts.map((post, i) =><Post key={i} post={post} />)}
+        <MakePost forum={forum} />
+      </PostList>
+      <PostList>
+        <h3>Private</h3>
+        {this.state.posts && this.state.posts.map((post, i) =><Post key={i} post={post} />)}
+        <MakePost forum={forum} />
+      </PostList>
       </div>
     );
   }

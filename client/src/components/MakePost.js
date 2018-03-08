@@ -1,5 +1,4 @@
 import React from 'react';
-import forum from '../utils/forum';
 
 export default class MakePost extends React.Component {
   constructor(props){
@@ -31,11 +30,11 @@ export default class MakePost extends React.Component {
     }else if(this.state.text===''){
       console.log('ei 2')
     }else if(this.state.password===''){
-      forum.makePost({text:this.state.text, username:this.state.username, date: Date()})
+      this.props.forum.makePost({text:this.state.text, username:this.state.username, date: Date()})
       this.setState({username:'',
       text:''})
     }else{
-      forum.makePost({text:this.state.text, username:this.state.username, date: Date() ,password: this.state.password})
+      this.props.forum.makePost({text:this.state.text, username:this.state.username, date: Date() ,password: this.state.password})
       this.setState({username:'',
       text:'',
       password:''})
@@ -43,6 +42,7 @@ export default class MakePost extends React.Component {
   }
 
   render() {
+
     return (
       <div className='MakePost'>
       <p>Username:</p>
