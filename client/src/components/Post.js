@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import forum from '../utils/forum'
 
@@ -11,6 +12,10 @@ export default class Post extends React.Component {
     this.handlePassword = this.handlePassword.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
+  static contextTypes = {
+    isPrivate: PropTypes.bool
+  }
+
   getClock(date){
     if(date.getMinutes()<9){
       if(date.getHours()<9){
@@ -34,15 +39,23 @@ export default class Post extends React.Component {
     this.setState({password: e.target.value})
   }
   handleClick(){
-    if(this.state.password!==''){
-      forum.deletePost(this.state.password,this.props.post.id)
-      this.setState({password:''})
+    const { isPrivate } = this.context
+    if(isPrivate){
+      console.log(this.props.post.id)
+      forum.deletePost(this.props.post.id)
+    }else{
+      if(this.state.password!==''){
+        forum.deletePost(this.state.password,this.props.post.id)
+        this.setState({password:''})
+      }
     }
+
 
   }
   renderDelete(){
+    const { isPrivate } = this.context
     if(this.props.post.hasRemove){
-      return <div className='Delete'><input value={this.state.password} onChange={this.handlePassword} placeholder='Password' type='password'></input>
+      return <div className='Delete'>{!isPrivate &&<input value={this.state.password} onChange={this.handlePassword} placeholder='Password' type='password'></input>}
       <button onClick={this.handleClick}>X</button></div>
     }else{
       return null

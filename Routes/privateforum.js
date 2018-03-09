@@ -20,7 +20,6 @@ const pusher = new Pusher({
 });
 
 function postMap(posts, user){
-  console.log(user.username)
   return posts.map(post=>({username: post.username, text: post.text, date:post.date, id:post._id, hasRemove: user.username === post.username}));
 }
 

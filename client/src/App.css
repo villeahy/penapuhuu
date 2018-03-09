@@ -28,11 +28,13 @@
   height: 60px;
 }
 .PostList {
+  vertical-align: top;
   display: inline-block;
   width: 35%;
   min-width: 510px;
-  max-height: 600px;
+  height: 600px;
   overflow: auto;
+  border: 2px solid black;
 }
 .Post {
   width: 508px;

@@ -1,62 +1,80 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import MakePost from './components/MakePost'
 import PostList from './components/PostList'
 import Post from './components/Post'
 import Register from './components/Register'
+import Login from './components/Login'
 
 import forum from './utils/forum'
-import pusher from './utils/pusher'
+import privateForum from './utils/privateForum'
 import './App.css'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state= {
-      posts:[]
+      posts:[],
+      privateposts:[],
+      logged: false
     }
-    this.newPost = this.newPost.bind(this)
-    this.deletePost = this.deletePost.bind(this)
-    this.getPublic = this.getPublic.bind(this)
+    this.setPublic = this.setPublic.bind(this)
+    this.setPrivate = this.setPrivate.bind(this)
+    this.setLogged = this.setLogged.bind(this)
   }
-  getPublic(){
-    forum.getPosts().then(posts =>{
-      const reverse =posts.reverse()
-      this.setState({posts: reverse})
-    })
+  static childContextTypes = {
+    isPrivate: PropTypes.bool,
+    forum: PropTypes.object.isRequired,
+    setLogged: PropTypes.func.isRequired
   }
-  componentDidMount(){
-    pusher.setPusher('add', this.newPost)
-    pusher.setPusher('delete', this.deletePost)
+  getChildContext() {
+    return {
+      isPrivate: false,
+      forum: forum,
+      setLogged: this.setLogged
+    }
   }
-  newPost(post){
-    const posts = this.state.posts.reverse()
-    posts.push(JSON.parse(post.post))
-    this.setState({posts:posts.reverse()})
+  setLogged(value){
+    this.setState({logged: value})
   }
-  deletePost(post){
-    let posts = this.state.posts
-    const remove =JSON.parse(post.post)
-    remove.forEach(post =>{
-      posts=posts.filter(filter=>filter.id!==post._id)
-    })
+  setPublic(posts){
     this.setState({posts})
+  }
+  setPrivate(privateposts){
+    this.setState({privateposts})
+  }
+  renderPrivate(){
+    if(this.state.logged){
+      return(<PostList isPrivate forum={privateForum} setPosts={this.setPrivate} posts={this.state.privateposts}>
+      <div className='PostList'>
+        <h3>Private</h3>
+        {this.state.privateposts && this.state.privateposts.map((post, i) =><Post key={i} post={post} />)}
+        <MakePost />
+      </div>
+      </PostList>)
+    }else{
+      return(
+        <div className='PostList'>
+        <Login />
+        <Register />
+        </div>)
+    }
   }
   render() {
     return (
       <div className="App">
       <h1>Pena Puhuu</h1>
-      <Register />
-      <PostList getPosts={this.getPublic}>
+
+      <PostList forum={forum} setPosts={this.setPublic} posts={this.state.posts} >
+      <div className='PostList'>
         <h3>Public</h3>
         {this.state.posts && this.state.posts.map((post, i) =><Post key={i} post={post} />)}
-        <MakePost forum={forum} />
+        <MakePost />
+        </div>
       </PostList>
-      <PostList isPrivate getPosts={this.getPublic}>
-        <h3>Private</h3>
-        {this.state.posts && this.state.posts.map((post, i) =><Post key={i} post={post} />)}
-        <MakePost forum={forum} />
-      </PostList>
+      {this.renderPrivate()}
+
       </div>
     )
   }
