@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default class PostList extends React.Component {
   constructor(props){
@@ -15,7 +15,7 @@ componentWillMount(){
   render(){
     const { isPrivate } = this.props
     if(isPrivate && this.state.loggedIn){
-      return null;
+      return null
 
     }else{
       return(

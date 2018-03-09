@@ -5,7 +5,7 @@
   margin: 0px auto;
   width: 406px;
 }
-.MakePost p {
+.MakePost label {
   text-align: right;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -70,4 +70,15 @@
   margin: 5px auto;
   max-height: 150px;
   overflow: auto;
+}
+.Register {
+  margin: 10px auto;
+  width: 250px;
+  text-align: right;
+}
+.Register button {
+  margin: 5px auto;
+}
+.Register input {
+  margin-top: 5px;
 }

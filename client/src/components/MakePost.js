@@ -8,21 +8,9 @@ export default class MakePost extends React.Component {
       text:'',
       password:''
     };
-    this.handleUser = this.handleUser.bind(this);
-    this.handleText = this.handleText.bind(this);
-    this.handlePass = this.handlePass.bind(this);
     this.handlePost = this.handlePost.bind(this);
   }
 
-  handleUser(e){
-    this.setState({username: e.target.value})
-  }
-  handleText(e){
-    this.setState({text: e.target.value})
-  }
-  handlePass(e){
-    this.setState({password: e.target.value})
-  }
   handlePost(){
     if(this.state.username===''){
       console.log('ei')
@@ -45,12 +33,18 @@ export default class MakePost extends React.Component {
 
     return (
       <div className='MakePost'>
-      <p>Username:</p>
-      <input value={this.state.username} onChange={this.handleUser}></input> <br />
-      <p>Post:</p>
-      <textarea value={this.state.text} onChange={this.handleText}></textarea> <br />
-      <p>Password:</p>
-      <input value={this.state.password} onChange={this.handlePass} type='password'></input><br />
+      <label>Username:</label>
+      <input value={this.state.username} onChange={(e) =>{
+        this.setState({username: e.target.value})
+      }}></input> <br />
+      <label>Post:</label>
+      <textarea value={this.state.text} onChange={(e) =>{
+        this.setState({text: e.target.value})
+      }}></textarea> <br />
+      <label>Password:</label>
+      <input value={this.state.password} onChange={(e) =>{
+        this.setState({username: e.target.value})
+      }} type='password'></input><br />
       <button onClick={this.handlePost}>Post</button>
       </div>
     );
