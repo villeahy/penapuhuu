@@ -33,12 +33,13 @@ export default class PostList extends React.Component {
     pusher.setPusher(isPrivate ? 'private-delete' : 'delete' , this.deletePost)
   }
   newPost(post){
+    console.log(post)
     const posts = this.props.posts.reverse()
     posts.push(JSON.parse(post.post))
     this.props.setPosts(posts.reverse())
   }
   deletePost(post){
-    let posts = this.props.posts
+    let { posts } = this.props
     const remove =JSON.parse(post.post)
     remove.forEach(post =>{
       posts=posts.filter(filter=>filter.id!==post._id)

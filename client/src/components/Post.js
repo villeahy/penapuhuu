@@ -13,7 +13,8 @@ export default class Post extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
   static contextTypes = {
-    isPrivate: PropTypes.bool
+    isPrivate: PropTypes.bool,
+    forum: PropTypes.object.isRequired
   }
 
   getClock(date){
@@ -39,9 +40,8 @@ export default class Post extends React.Component {
     this.setState({password: e.target.value})
   }
   handleClick(){
-    const { isPrivate } = this.context
+    const { isPrivate, forum } = this.context
     if(isPrivate){
-      console.log(this.props.post.id)
       forum.deletePost(this.props.post.id)
     }else{
       if(this.state.password!==''){

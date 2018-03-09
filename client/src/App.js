@@ -26,13 +26,15 @@ class App extends Component {
   static childContextTypes = {
     isPrivate: PropTypes.bool,
     forum: PropTypes.object.isRequired,
-    setLogged: PropTypes.func.isRequired
+    setLogged: PropTypes.func.isRequired,
+    privateForum: PropTypes.object.isRequired
   }
   getChildContext() {
     return {
       isPrivate: false,
       forum: forum,
-      setLogged: this.setLogged
+      setLogged: this.setLogged,
+      privateForum: privateForum
     }
   }
   setLogged(value){

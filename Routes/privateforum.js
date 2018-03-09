@@ -36,6 +36,29 @@ router.get('/', verifyToken, (req, res) => {
   })
 })
 
+//Delete
+router.post('/:id',verifyToken, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if(err) {
+      res.sendStatus(403);
+    }else{
+      console.log(req.params.id)
+      Message.find({username: authData.user.username}).find({'_id':req.params.id}).then(removed => {
+        res.send({success:true, message:'Post removed'})
+        pusher.trigger('forum', 'private-delete', {
+          'success': true,
+          'message': 'Post removed',
+          'post': JSON.stringify(removed)
+        })
+      })
+    }
+    Message.find({username: authData.user.username}).remove({'_id':req.params.id},function(err){
+      if(err) return handleError(err);
+    })
+  })
+
+})
+
 router.post('/', verifyToken, (req, res) => {
   jwt.verify(req.token, 'secretkey', (err, authData) => {
     if(err) {
@@ -47,7 +70,14 @@ router.post('/', verifyToken, (req, res) => {
         username: authData.user.username,
         date: req.body.date
       }
-      new Message(newMessage).save();
+      new Message(newMessage).save().then(post=>{
+        console.log(authData)
+        pusher.trigger('forum', 'private-add', {
+          'success': true,
+          'message': 'Post removed',
+          'post': JSON.stringify({username: post.username, text: post.text, date:post.date, id:post._id, hasRemove: authData.user.username === post.username})
+        })
+      });
       res.json({
         success: true, message: 'Thank you for posting'
       })

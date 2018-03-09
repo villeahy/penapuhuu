@@ -13,7 +13,7 @@ const messageSchema = new Schema({
   },
   date: {
     type: Date,
-    //required:true
+    required:true
   }
 });
 

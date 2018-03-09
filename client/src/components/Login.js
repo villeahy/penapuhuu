@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import privateForum from '../utils/privateForum'
-
 export default class Register extends React.Component {
   constructor(props){
     super(props)
@@ -13,15 +11,21 @@ export default class Register extends React.Component {
     this.handleLogin = this.handleLogin.bind(this)
   }
   static contextTypes = {
-    setLogged: PropTypes.func.isRequired
+    setLogged: PropTypes.func.isRequired,
+    privateForum: PropTypes.object.isRequired
   }
   handleLogin(){
-    const { setLogged } = this.context
-    privateForum.getToken({username: this.state.username, password: this.state.password}).then(results=>setLogged(results))
+    const { setLogged, privateForum } = this.context
+    if(this.state.username === '' || this.state.password === ''){
+      console.log('ei')
+    }else{
+      privateForum.getToken({username: this.state.username, password: this.state.password}).then(results=>setLogged(results))
+    }
   }
   render(){
     return (
       <div className='Register'>
+      <h3>Login</h3>
       <label>Username:</label>
       <input placeholder='BobDylan247' onChange={(e) =>{
         this.setState({username: e.target.value})

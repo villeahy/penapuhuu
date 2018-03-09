@@ -1,6 +1,6 @@
-const token = '';
+
 const privateForum = {
-  async getToken(user, logged){
+  async getToken(user){
     try {
       let response = await fetch('http://localhost:3420/user/login/',{
         method: 'POST',
@@ -20,9 +20,29 @@ const privateForum = {
     }catch(error){
       console.log(error)
     }
-
-
   },
+
+  async createUser(user){
+    try {
+      let response = await fetch('http://localhost:3420/user/',{
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })})
+        if(response.ok){
+          let jsonResponse = await response.json()
+          if(jsonResponse.success===false){
+            return jsonResponse.success
+          }else{
+            return jsonResponse
+          }
+        }
+    }catch(error){
+      console.log(error)
+    }
+  },
+
   makePost(post){
     fetch('http://localhost:3420/api/privateforum/',{
       method: 'POST',
