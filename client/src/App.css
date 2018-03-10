@@ -76,10 +76,13 @@
 .Register {
   margin: 10px auto;
   width: 250px;
-  text-align: center;
+  text-align: right;
 }
 .Register button {
-  margin: 5px auto;
+  margin: 5px 70px;
+}
+.Register h3 {
+  margin: 5px 70px;
 }
 .Register input {
   margin-top: 5px;
