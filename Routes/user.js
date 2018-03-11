@@ -23,16 +23,36 @@ router.get('/', (req, res) => {
 
 // uusi käyttäjä User tauluun, reitti voi muuttua!
 router.post('/', (req, res) => {
-  const newUser = {
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password
+  if (validateEmail(req.body.email)) {
+    const newUser = {
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password
+    }
+    new User(newUser).save(function(err) {
+      if(err) {
+        res.json({
+          success: true, message: "User creation failed, check fields!"
+        })
+      }
+      else {
+        res.json({
+          success: true, message: "New user created"
+        })
+      }
+    });
   }
-  new User(newUser).save();
-  res.json({
-    success: true, message: "New user created"
-  })
+  else {
+    res.json({
+      success: true, message: "Email is invalid!"
+    })
+  }
 })
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 
 function handleLogin(req, res, user) {
   if(user == null){
