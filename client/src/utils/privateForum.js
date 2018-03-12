@@ -69,7 +69,7 @@ const privateForum = {
   },
   deletePost(id){
     fetch('http://localhost:3420/api/privateforum/'+id,{
-      method: 'POST',
+      method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
         'authorization': 'bearer ' + this.token

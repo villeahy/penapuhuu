@@ -29,7 +29,7 @@ router.get('/:id', function(req, res) {
 });
 
 //Delete
-router.post('/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
   console.log(req.body.password)
   Post.find({'_id': req.params.id}).where({'password':req.body.password}).then(removed =>{
     res.send({success:true, message:'Post removed'})

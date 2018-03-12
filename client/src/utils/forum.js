@@ -22,7 +22,7 @@ const forum = {
   },
   deletePost(password,id){
     fetch('http://localhost:3420/api/posts/'+id,{
-      method: 'POST',
+      method: 'DELETE',
       body: JSON.stringify({password:password}),
       headers: new Headers({
         'Content-Type': 'application/json'
