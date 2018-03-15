@@ -32,7 +32,7 @@ GET: Palauttaa kaikki tietokannassa olevat käyttäjät, ilman salasanoja.
 }
 
 localhost:3420/api/posts
-POST: Tekee kantaan uuden viestin, tarvitsee bodyyn: Text, password, username ja true attribuutit.
+POST: Tekee kantaan uuden viestin.
 
 Body:
 {
@@ -65,7 +65,7 @@ GET: Palauttaa tietokannassa olevan käyttäjän ID:n perusteella ilman salasana
 }
 
 localhost:3420/api/posts/:id
-DELETE: Poistaa tietokannassa olevan käyttäjän ID:n perusteella, bodyssä täytyy olla käyttäjänimi ja salasana.
+DELETE: Poistaa tietokannassa olevan käyttäjän ID:n perusteella.
 
 Body:
 {
