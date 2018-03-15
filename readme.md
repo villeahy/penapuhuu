@@ -1,10 +1,9 @@
-Rest-API kyselyt
+<h1>Rest-API kyselyt</h1>
 
-/api/posts
+<h2>/api/posts</h2>
 
 
-localhost:3420/api/posts
-
+<h3>localhost:3420/api/posts</h3>
 GET: Palauttaa kaikki tietokannassa olevat käyttäjät, ilman salasanoja.
 
 {
@@ -35,8 +34,7 @@ GET: Palauttaa kaikki tietokannassa olevat käyttäjät, ilman salasanoja.
 }
 
 
-localhost:3420/api/posts
-
+<h3>localhost:3420/api/posts</h3>
 POST: Tekee kantaan uuden viestin.
 
 
@@ -57,8 +55,7 @@ Result:
     "message": "Thank you for adding."
 }
 
-localhost:3420/api/posts/:id
-
+<h3>localhost:3420/api/posts/:id</h3>
 GET: Palauttaa tietokannassa olevan käyttäjän ID:n perusteella ilman salasanaa.
 
 {
@@ -74,8 +71,7 @@ GET: Palauttaa tietokannassa olevan käyttäjän ID:n perusteella ilman salasana
     ]
 }
 
-localhost:3420/api/posts/:id
-
+<h3>localhost:3420/api/posts/:id</h3>
 DELETE: Poistaa tietokannassa olevan käyttäjän ID:n perusteella.
 
 Body:
@@ -90,10 +86,9 @@ Result:
     "message": "Post removed"
 }
 
-/user
+<h2>/user</h2>
 
-localhost:3420/user
-
+<h3>localhost:3420/user</h3>
 GET: Palauttaa tietokannassa olevat kaikki private forumin käyttäjät kaikkine tietoineen.
 
 {
@@ -116,8 +111,7 @@ GET: Palauttaa tietokannassa olevat kaikki private forumin käyttäjät kaikkine
 }
 
 
-localhost:3420/user
-
+<h3>localhost:3420/user</h3>
 POST: Luo tietokantaan uuden käyttäjän.
 
 Body:
@@ -135,8 +129,7 @@ Result:
     "message": "New user created"
 }
 
-localhost:3420/user/login
-
+<h3>localhost:3420/user/login</h3>
 POST: Kirjautuu sisään private forumille ja luo käyttäjälle tokenin
 
 Body:
@@ -152,21 +145,19 @@ Result:
     "token":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVhYTAzODM5MmJmMWU2NDlkNGRiNzE4YyIsImVtYWlsIjoidmlsbGVAbWV0cm9wb2xpYS5maSIsInVzZXJuYW1lIjoidmlsbGUiLCJwYXNzd29yZCI6InBlbmEiLCJfX3YiOjB9LCJpYXQiOjE1MjExMzU4OTcsImV4cCI6MTUyMTEzOTQ5N30.RuuIckuLGDdHtuUlv1sIwQz_YRUuaiO1e1LlT8UM9Eo"
 }
 
-/api/privateforum
+<h2>/api/privateforum<h2>
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Polku vaatii tunnistautumisen tokenilla!
 
 Headereihin tulee lisätä avain "Authorization" ja valueksi antaa "Bearer [token]" jossa [token] korvataan tietenkin kirjautumisessa palautetulla tokenilla.
-
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Jos validia tokenia ei ole, palautuu error 403, forbidden.
 
 
-localhost:3420/api/privateforum/
-
+<h3>localhost:3420/api/privateforum/</h3>
 GET: Palauttaa käyttäjien lähettämät viestit.
 
 
@@ -191,10 +182,8 @@ GET: Palauttaa käyttäjien lähettämät viestit.
 }
 
 
-localhost:3420/api/privateforum/
-
+<h3>localhost:3420/api/privateforum/</h3>
 POST: Tekee uuden postauksen, vaatii tekstin ja päivämäärän, käyttäjänimi otetaan tokenilta.
-
 
 Body:
 
@@ -211,8 +200,7 @@ Result:
 }
 
 
-localhost:3420/api/privateforum/:id
-
+<h3>localhost:3420/api/privateforum/:id</h3>
 DELETE: Poistaa viestin ID:n avulla, tokenin tulee kuulua viestin omistajalle, jotta viesti oikeasti poistuu.
 
 Result:
