@@ -21,7 +21,7 @@ pusher.trigger('my-channel', 'my-event', {
 });
 
 router.get('/', (req, res) => {
-  Post.find().then(results => res.send({success:true, posts:postMap(results)}))
+  Post.find().then(results => res.send({success:true, posts:results}))
 });
 
 router.get('/:id', function(req, res) {
